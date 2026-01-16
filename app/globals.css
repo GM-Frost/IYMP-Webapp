@@ -1,26 +1,193 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gradient-main: linear-gradient(
+    90deg,
+    #30d19e,
+    #30d09c,
+    #2ed1a4,
+    #2bd1b4,
+    #26d1c6,
+    #24d19d,
+    #23d999,
+    #4adc6d,
+    #90e06e,
+    #99ec84
+  );
 }
 
+/* ================================
+   LIGHT THEME (DEFAULT)
+   ================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: #ffffff;
+  --color-surface: #f8faf9;
+  --color-border: #e5e7eb;
+
+  /* Brand */
+  --color-primary: #2ebf8c;
+  --color-primary-dark: #218562;
+  --color-primary-light: #3bebad;
+  --color-secondary: #dfb93d;
+  --color-secondary-light: #f4de63;
+  --color-secondary-dark: #ddb73b;
+
+  /* Text */
+  --color-text-primary: #111827;
+  --color-text-muted: #6b7280;
+
+  /* LIGHT MODE BACKGROUND (NO GRADIENT) */
+  --bg-base: #ffffff;
+  --bg-radial: none;
+  --bg-vignette: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* =====================================================
+   DARK THEME OVERRIDES
+   ===================================================== */
+.dark {
+  --color-bg: #0f1115;
+  --color-surface: #171a21;
+  --color-border: #2a2e38;
+
+  --color-text-primary: #e5e7eb;
+  --color-text-muted: #9ca3af;
+
+  /* Dark base */
+  --bg-base: #05080f;
+
+  /* Green glow — stronger & lower */
+  --bg-radial: radial-gradient(
+    2000px 700px at 50% 0%,
+    rgba(31, 168, 102, 0.45),
+    rgba(31, 168, 102, 0.15) 35%,
+    transparent 65%
+  );
+
+  /* Softer vignette — later & lighter */
+  --bg-vignette: radial-gradient(1400px 900px at 50% 40%, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+/* =====================================================
+   BASE STYLES
+   ===================================================== */
+@layer base {
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--bg-radial), var(--bg-vignette), var(--bg-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+  }
+
+  h1 {
+    @apply text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-4xl font-semibold;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold;
   }
 }
+/* =====================================================
+   SEMANTIC UTILITIES
+   ===================================================== */
+@layer utilities {
+  /* Backgrounds */
+  .bg-bg {
+    background-color: var(--color-bg);
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
+
+  /* Borders */
+  .border-border {
+    border-color: var(--color-border);
+  }
+
+  /* Text */
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .text-text-primary {
+    color: var(--color-text-primary);
+  }
+
+  .text-text-muted {
+    color: var(--color-text-muted);
+  }
+
+  /* Brand accents */
+  .bg-primary {
+    background: var(--gradient-main);
+    background-size: 200% 200%;
+    background-position: 0% 100%;
+    transition: background-position 0.3s;
+    color: black;
+  }
+  .bg-primary:hover,
+  .bg-primary:focus {
+    background-position: 100% 0%;
+  }
+
+  .bg-primary-dark {
+    background-color: var(--color-primary-dark);
+  }
+
+  .bg-primary-light {
+    background-color: var(--color-primary-light);
+  }
+
+  .bg-gradient {
+    background: var(--gradient-main);
+    background-size: 200% 200%;
+    background-position: 0% 100%;
+    transition: background-position 0.3s;
+  }
+  .bg-gradient:hover,
+  .bg-gradient:focus {
+    background-position: 100% 0%;
+  }
+
+  .dark .bg-gradient {
+    background: var(--gradient-main);
+  }
+
+  .gradient-text {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+  }
+  .outlined-gradient-hover:hover,
+  .outlined-gradient-hover:focus {
+    background-image: var(--gradient-main);
+    background-size: 200% 200%;
+    background-position: 100% 0%;
+    color: #fff !important;
+    border-color: transparent !important;
+  }
+
+  .dark .outlined-bloom-hover:hover,
+  .dark .outlined-bloom-hover:focus {
+    box-shadow: 0 0 8px 2px rgba(46, 191, 140, 0.5), 0 0 32px 8px rgba(46, 191, 140, 0.2);
+    border-color: transparent;
+    color: #fff;
+    transition: background-position 0.3s, box-shadow 0.3s;
+  }
 }
