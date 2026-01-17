@@ -4,6 +4,50 @@ import { Button, ArrowForward, PlayCircleOutlineIcon } from '@/components/ui';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 
+type FloatingItem = {
+  id: string;
+  label: string;
+  value: string;
+  valueClass?: string;
+  position: string;
+  animation: string;
+};
+
+const FLOATING_ITEMS: FloatingItem[] = [
+  {
+    id: 'top-right',
+    label: 'Performance',
+    value: '+24.7%',
+    valueClass: 'text-green-500',
+    position: '-top-2 -right-8',
+    animation: 'animate-float-delayed',
+  },
+  {
+    id: 'bottom-left',
+    label: 'Win Rate',
+    value: '73.2%',
+    valueClass: 'text-primary',
+    position: '-bottom-5 -left-6',
+    animation: 'animate-float',
+  },
+  {
+    id: 'top-left',
+    label: 'Drawdown',
+    value: '-6.1%',
+    valueClass: 'text-red-500',
+    position: '-top-1 -left-10',
+    animation: 'animate-float',
+  },
+  {
+    id: 'bottom-right',
+    label: 'Trades',
+    value: '1,284',
+    valueClass: 'text-blue-500',
+    position: '-bottom-1 -right-10',
+    animation: 'animate-float-delayed',
+  },
+];
+
 const LandingHero = () => {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -148,15 +192,27 @@ const LandingHero = () => {
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-8 -right-8 px-4 py-2 bg-surface border border-border rounded-lg shadow-xl backdrop-blur-sm animate-float">
-                <div className="text-xs opacity-60">Performance</div>
-                <div className="text-lg font-bold text-green-500">+24.7%</div>
-              </div>
-
-              <div className="absolute -bottom-6 -left-6 px-4 py-2 bg-surface border border-border rounded-lg shadow-xl backdrop-blur-sm animate-float-delayed">
-                <div className="text-xs opacity-60">Win Rate</div>
-                <div className="text-lg font-bold text-primary">73.2%</div>
-              </div>
+              {FLOATING_ITEMS.map((item) => (
+                <div
+                  key={item.id}
+                  className={`
+      absolute
+      ${item.position}
+      px-4
+      py-2
+      bg-surface
+      border
+      border-border
+      rounded-lg
+      shadow-xl
+      backdrop-blur-sm
+      ${item.animation}
+    `}
+                >
+                  <div className="text-xs opacity-90">{item.label}</div>
+                  <div className={`text-lg font-bold ${item.valueClass ?? ''}`}>{item.value}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -226,8 +282,10 @@ const LandingHero = () => {
         .animate-float {
           animation: float 3s ease-in-out infinite;
         }
+
         .animate-float-delayed {
-          animation: float-delayed 3.5s ease-in-out infinite;
+          animation: float 3.5s ease-in-out infinite;
+          animation-delay: 0.4s;
         }
       `}</style>
     </main>

@@ -112,7 +112,7 @@ export default function Navbar() {
                       <div
                         className={`rounded-xl shadow-lg min-w-45 py-1  overflow-hidden ${
                           isDark
-                            ? 'bg-black backdrop-blur-2xl shadow-md border border-primary/80'
+                            ? 'bg-black backdrop-blur-2xl shadow-md border border-primary/30'
                             : 'bg-white'
                         }`}
                       >
