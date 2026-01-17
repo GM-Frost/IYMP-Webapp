@@ -1,11 +1,17 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, ArrowForward, PlayCircleOutlineIcon } from '@/components/ui';
 import Image from 'next/image';
-import { useTheme } from '@/components/hooks/ThemeContext';
+import { useTheme } from 'next-themes';
 
 const LandingHero = () => {
-  const { isDark, toggleTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const isDark = mounted && resolvedTheme === 'dark';
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <main className="relative min-h-screen flex items-center justify-center px-6 lg:px-8 overflow-hidden">
@@ -17,7 +23,7 @@ const LandingHero = () => {
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 -z-10 opacity-[0.03]">
-        <div className="h-full w-full bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="h-full w-full bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-size-[48px_48px]" />
       </div>
 
       <section className="relative max-w-7xl w-full grid lg:grid-cols-2 gap-12 lg:gap-20 items-center py-20 lg:py-0">

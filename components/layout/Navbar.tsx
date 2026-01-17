@@ -4,37 +4,50 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { useTheme } from '@/components/hooks/ThemeContext';
+import { useTheme } from 'next-themes';
+
 import { NAV_ITEMS } from '@/components/navigation/nav.config';
 import { CloseIcon, DarkModeIcon, ExpandMoreIcon, LightModeIcon, MenuIcon } from '@/components/ui';
 
 export default function Navbar() {
-  const { isDark, toggleTheme } = useTheme();
-  const pathname = usePathname();
+  const { resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
 
+  const pathname = usePathname();
   const isLanding = pathname === '/';
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     if (!isLanding) return;
-
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, [isLanding]);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    // Render NOTHING until client hydration is done
+    return null;
+  }
+
+  const toggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark');
+  };
 
   const solid = !isLanding || scrolled;
 
@@ -170,86 +183,90 @@ export default function Navbar() {
       </header>
 
       {/* Mobile Menu Overlay - Outside header */}
-      {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
-          <button
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-            onClick={() => setMobileOpen(false)}
-            aria-label="Close menu overlay"
-          />
-          <div
-            className={`absolute right-0 top-0 h-full w-[75%] max-w-sm border-l  shadow-2xl ${
-              isDark
-                ? 'bg-black/60 backdrop-blur-xl border-primary-dark/60'
-                : 'bg-white border-border'
-            }`}
-          >
-            <div className="h-full overflow-y-auto">
-              <div className="h-14 border-b border-border flex items-center justify-end px-4">
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="p-2 transition-opacity hover:opacity-70"
-                  aria-label="Close menu"
-                >
-                  <CloseIcon className="w-5 h-5" />
-                </button>
-              </div>
-              <nav className="px-6 py-6 flex flex-col gap-1">
-                {NAV_ITEMS.map((item) =>
-                  item.children ? (
-                    <div key={item.label} className="border-b border-border pb-3 mb-2">
-                      <button
-                        onClick={() =>
-                          setActiveDropdown(activeDropdown === item.label ? null : item.label)
-                        }
-                        className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium tracking-wide transition-colors"
-                      >
-                        {item.label}
-                        <ExpandMoreIcon
-                          className={`w-5 h-5 transition-transform duration-150 ${
-                            activeDropdown === item.label ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </button>
-                      <div
-                        className={`overflow-hidden transition-all duration-200 ${
-                          activeDropdown === item.label
-                            ? 'max-h-96 opacity-100 mt-1'
-                            : 'max-h-0 opacity-0'
-                        }`}
-                      >
-                        <div className="pl-3 flex flex-col gap-0.5">
-                          {item.children.map((child) => (
-                            <Link
-                              key={child.href}
-                              href={child.href!}
-                              onClick={() => setMobileOpen(false)}
-                              className="px-3 py-2 text-sm font-medium tracking-wide transition-colors hover:text-primary"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <Link
-                      key={item.href}
-                      href={item.href!}
-                      onClick={() => setMobileOpen(false)}
-                      className={`px-3 py-2.5 text-sm font-medium tracking-wide transition-colors ${
-                        pathname === item.href ? 'text-primary' : 'hover:text-primary'
-                      }`}
+      <div
+        className={`lg:hidden fixed inset-0 z-50 transition-opacity duration-300 ${
+          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <button
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300"
+          onClick={() => setMobileOpen(false)}
+          aria-label="Close menu overlay"
+        />
+        <div
+          className={`absolute right-0 top-0 h-full w-[75%] max-w-sm border-l shadow-2xl transform-gpu transition-transform duration-300 ease-out ${
+            mobileOpen ? 'translate-x-0' : 'translate-x-full'
+          } ${
+            isDark
+              ? 'bg-black/60 backdrop-blur-xl border-primary-dark/60'
+              : 'bg-white/80 backdrop-blur-lg border-border'
+          }`}
+        >
+          <div className="h-full overflow-y-auto">
+            <div className="h-14 border-b border-border flex items-center justify-end px-4">
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="p-2 transition-opacity hover:opacity-70"
+                aria-label="Close menu"
+              >
+                <CloseIcon className="w-5 h-5" />
+              </button>
+            </div>
+            <nav className="px-6 py-6 flex flex-col gap-1">
+              {NAV_ITEMS.map((item) =>
+                item.children ? (
+                  <div key={item.label} className="border-b border-border pb-3 mb-2">
+                    <button
+                      onClick={() =>
+                        setActiveDropdown(activeDropdown === item.label ? null : item.label)
+                      }
+                      className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium tracking-wide transition-colors"
                     >
                       {item.label}
-                    </Link>
-                  )
-                )}
-              </nav>
-            </div>
+                      <ExpandMoreIcon
+                        className={`w-5 h-5 transition-transform duration-150 ${
+                          activeDropdown === item.label ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-200 ${
+                        activeDropdown === item.label
+                          ? 'max-h-96 opacity-100 mt-1'
+                          : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <div className="pl-3 flex flex-col gap-0.5">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href!}
+                            onClick={() => setMobileOpen(false)}
+                            className="px-3 py-2 text-sm font-medium tracking-wide transition-colors hover:text-primary"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href!}
+                    onClick={() => setMobileOpen(false)}
+                    className={`px-3 py-2.5 text-sm font-medium tracking-wide transition-colors ${
+                      pathname === item.href ? 'text-primary' : 'hover:text-primary'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
+            </nav>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

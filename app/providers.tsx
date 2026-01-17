@@ -1,7 +1,6 @@
-'use client';
-
-import { ThemeProvider } from '@/components/hooks/ThemeContext';
+// app/providers.tsx
+import AppThemeProvider from '@/components/hooks/ThemeProvider';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  return <ThemeProvider>{children}</ThemeProvider>;
+  return <AppThemeProvider>{children}</AppThemeProvider>;
 }
