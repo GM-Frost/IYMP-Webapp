@@ -19,8 +19,8 @@ export default function Ticker({ items, direction = 'left' }: Props) {
     <section className="relative w-full overflow-hidden bg-black border-y border-white/10">
       {/* Gradient mask */}
       <div className="pointer-events-none absolute inset-0 z-10">
-        <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black to-transparent" />
-        <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black to-transparent" />
+        <div className="absolute left-0 top-0 h-full w-24 bg-linear-to-r from-black to-transparent" />
+        <div className="absolute right-0 top-0 h-full w-24 bg-linear-to-l from-black to-transparent" />
       </div>
 
       <div
