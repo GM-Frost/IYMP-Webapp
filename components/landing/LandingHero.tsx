@@ -200,7 +200,7 @@ const LandingHero = () => {
       ${item.position}
       px-4
       py-2
-      bg-surface
+      bg-surface/10
       border
       border-border
       rounded-lg
