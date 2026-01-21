@@ -195,6 +195,15 @@
       background-position 0.3s,
       box-shadow 0.3s;
   }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes ticker-left {

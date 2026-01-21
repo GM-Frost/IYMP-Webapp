@@ -2,7 +2,8 @@ import MarketTickerServer from '@/components/landing/MarketTicker.server';
 import LandingHero from './LandingHero';
 import { Suspense } from 'react';
 import TickerSkeleton from '@/components/ticker/TickerSkeleton';
-import CorePhilosophy from './CorePhilosophy';
+import CorePhilosophy from '@/components/landing/CorePhilosophy';
+import OurOffer from '@/components/landing/OurOffer';
 
 const LandingPage = () => {
   return (
@@ -11,6 +12,7 @@ const LandingPage = () => {
       <Suspense fallback={<TickerSkeleton />}>
         <MarketTickerServer />
         <CorePhilosophy />
+        <OurOffer />
       </Suspense>
     </>
   );
