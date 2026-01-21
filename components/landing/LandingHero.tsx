@@ -172,10 +172,17 @@ const LandingHero = () => {
             {/* Animated Rings */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-80 h-80 rounded-full border border-primary/20 animate-ping-slow" />
+                <div className="w-80 h-80 rounded-full border border-primary/30 animate-orbit-slow">
+                  <span className="absolute left-1/2 top-0 h-2 w-2 -translate-x-1/2 rounded-full bg-emerald-300/80 shadow-[0_0_12px_rgba(16,185,129,0.9)]" />
+                </div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-96 h-96 rounded-full border border-primary/10 animate-ping-slower" />
+                <div className="w-96 h-96 rounded-full border border-primary/15 animate-orbit-slower">
+                  <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-emerald-200/70 shadow-[0_0_10px_rgba(16,185,129,0.7)]" />
+                </div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="h-64 w-64 rounded-full border border-emerald-400/10 animate-spin-slow" />
               </div>
 
               {/* Logo Container */}
@@ -255,26 +262,28 @@ const LandingHero = () => {
       </div> */}
 
       <style jsx>{`
-        @keyframes ping-slow {
-          0%,
-          100% {
-            transform: scale(1);
-            opacity: 0.5;
+        @keyframes orbit-slow {
+          0% {
+            transform: rotate(0deg);
           }
-          50% {
-            transform: scale(1.05);
-            opacity: 0.3;
+          100% {
+            transform: rotate(360deg);
           }
         }
-        @keyframes ping-slower {
-          0%,
-          100% {
-            transform: scale(1);
-            opacity: 0.3;
+        @keyframes orbit-slower {
+          0% {
+            transform: rotate(0deg);
           }
-          50% {
-            transform: scale(1.08);
-            opacity: 0.1;
+          100% {
+            transform: rotate(-360deg);
+          }
+        }
+        @keyframes spin-slow {
+          0% {
+            transform: rotate(0deg) scale(0.98);
+          }
+          100% {
+            transform: rotate(360deg) scale(0.98);
           }
         }
         @keyframes float {
@@ -295,11 +304,14 @@ const LandingHero = () => {
             transform: translateY(-12px);
           }
         }
-        .animate-ping-slow {
-          animation: ping-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        .animate-orbit-slow {
+          animation: orbit-slow 18s linear infinite;
         }
-        .animate-ping-slower {
-          animation: ping-slower 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        .animate-orbit-slower {
+          animation: orbit-slower 26s linear infinite;
+        }
+        .animate-spin-slow {
+          animation: spin-slow 40s linear infinite;
         }
         .animate-float {
           animation: float 3s ease-in-out infinite;
