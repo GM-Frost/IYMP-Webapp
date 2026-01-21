@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, ArrowForward, PlayCircleOutlineIcon } from '@/components/ui';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
+import { Motion } from '@/components/motion/Motion';
 
 type FloatingItem = {
   id: string;
@@ -74,38 +75,52 @@ const LandingHero = () => {
         {/* Left: Content */}
         <div className="flex flex-col gap-8 max-w-2xl">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 w-fit">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs font-medium tracking-wide uppercase">
-              Algorithm-Driven Trading
-            </span>
-          </div>
+          <Motion className="motion-fade motion-ease-out" step={0}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 w-fit">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span className="text-xs font-medium tracking-wide uppercase">
+                Algorithm-Driven Trading
+              </span>
+            </div>
+          </Motion>
 
           {/* Headline */}
-          <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight">
-            Trade the{' '}
-            <span className="relative inline-block">
-              <span className="gradient-text">Setup</span>
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                viewBox="0 0 200 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2 9C60 3 140 3 198 9"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  className="text-primary/40"
-                />
-              </svg>
-            </span>
-            , Not the Noise.
-          </h1>
+          <Motion className="motion-slide-left motion-ease-out motion-slow" step={1}>
+            <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] tracking-tight">
+              Trade the{' '}
+              <span className="relative inline-block">
+                <span className="gradient-text">Setup</span>
+                <Motion
+                  className="motion-slide-left motion-ease-in motion-slow"
+                  step={2}
+                  stepDelay={250}
+                >
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full"
+                    viewBox="0 0 200 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 9C60 3 140 3 198 9"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      className="text-primary/40"
+                    />
+                  </svg>
+                </Motion>
+              </span>
+              , Not the Noise.
+            </h1>
+          </Motion>
 
           {/* Description */}
-          <div className="space-y-4">
+          <Motion
+            className="motion-flip-up motion-ease-in motion-slow space-y-4"
+            step={3}
+            stepDelay={180}
+          >
             <p className="text-lg lg:text-xl leading-relaxed opacity-90">
               <span className="font-semibold text-primary">IYMP</span> — It's Your Money Plant is an
               algorithm-driven trading ecosystem built around one core belief:
@@ -113,22 +128,27 @@ const LandingHero = () => {
             <p className="text-base lg:text-lg leading-relaxed opacity-80 pl-4 border-l-2 border-primary/30">
               Wealth grows best with structure, patience, and probability — just like a plant.
             </p>
-          </div>
+          </Motion>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <Button bloom className="group">
-              Get Started
-              <ArrowForward className="group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="outlined" className="group">
-              <PlayCircleOutlineIcon className="group-hover:scale-110 transition-transform" />
-              Watch Algo Live
-            </Button>
-          </div>
+          <Motion className="motion-rise" step={4} stepDelay={180}>
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <Button bloom className="group">
+                Get Started
+                <ArrowForward className="group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="outlined" className="group">
+                <PlayCircleOutlineIcon className="group-hover:scale-110 transition-transform" />
+                Watch Algo Live
+              </Button>
+            </div>
+          </Motion>
 
           {/* Stats */}
-          <div className="flex items-center gap-8 pt-4 border-t border-border/50">
+          <Motion
+            className="motion-flip-up motion-ease-in motion-slow flex items-center gap-8 pt-4 border-t border-border/50"
+            stepDelay={150}
+          >
             <div>
               <div className="text-2xl font-bold">98.7%</div>
               <div className="text-xs opacity-60 uppercase tracking-wide">Uptime</div>
@@ -143,26 +163,27 @@ const LandingHero = () => {
               <div className="text-2xl font-bold">Real-time</div>
               <div className="text-xs opacity-60 uppercase tracking-wide">Execution</div>
             </div>
-          </div>
+          </Motion>
         </div>
 
         {/* Right: Visual */}
-        <div className="relative flex items-center justify-center lg:justify-end">
-          {/* Animated Rings */}
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-80 h-80 rounded-full border border-primary/20 animate-ping-slow" />
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-96 h-96 rounded-full border border-primary/10 animate-ping-slower" />
-            </div>
+        <Motion className="motion-slide-right motion-ease-out motion-slow" step={2} stepDelay={180}>
+          <div className="relative flex items-center justify-center lg:justify-end">
+            {/* Animated Rings */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-80 h-80 rounded-full border border-primary/20 animate-ping-slow" />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-96 h-96 rounded-full border border-primary/10 animate-ping-slower" />
+              </div>
 
-            {/* Logo Container */}
-            <div className="relative z-10 group">
-              {/* Glow */}
-              <div
-                aria-hidden
-                className={`
+              {/* Logo Container */}
+              <div className="relative z-10 group">
+                {/* Glow */}
+                <div
+                  aria-hidden
+                  className={`
                   absolute
                   inset-1/2
                   -z-10
@@ -177,25 +198,25 @@ const LandingHero = () => {
                   transition-opacity
                   duration-700
                 `}
-              />
-
-              {/* Actual circle */}
-              <div className="relative  backdrop-blur-sm rounded-full p-12 border border-border/10 shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                <Image
-                  src={isDark ? '/logo/logo.png' : '/logo/logo-white.png'}
-                  alt="IYMP Logo"
-                  width={200}
-                  height={200}
-                  className="w-40 h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 drop-shadow-2xl"
-                  priority
                 />
-              </div>
 
-              {/* Floating Elements */}
-              {FLOATING_ITEMS.map((item) => (
-                <div
-                  key={item.id}
-                  className={`
+                {/* Actual circle */}
+                <div className="relative  backdrop-blur-sm rounded-full p-12 border border-border/10 shadow-2xl group-hover:scale-105 transition-transform duration-500">
+                  <Image
+                    src={isDark ? '/logo/logo.png' : '/logo/logo-white.png'}
+                    alt="IYMP Logo"
+                    width={200}
+                    height={200}
+                    className="w-40 h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 drop-shadow-2xl"
+                    priority
+                  />
+                </div>
+
+                {/* Floating Elements */}
+                {FLOATING_ITEMS.map((item) => (
+                  <div
+                    key={item.id}
+                    className={`
       absolute
       ${item.position}
       px-4
@@ -208,17 +229,18 @@ const LandingHero = () => {
       backdrop-blur-sm
       ${item.animation}
     `}
-                >
-                  <div className="text-xs opacity-90">{item.label}</div>
-                  <div className={`text-lg font-bold ${item.valueClass ?? ''}`}>{item.value}</div>
-                </div>
-              ))}
+                  >
+                    <div className="text-xs opacity-90">{item.label}</div>
+                    <div className={`text-lg font-bold ${item.valueClass ?? ''}`}>{item.value}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </Motion>
       </section>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 animate-bounce">
         <span className="text-xs uppercase tracking-widest">Scroll</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -230,7 +252,7 @@ const LandingHero = () => {
             strokeLinejoin="round"
           />
         </svg>
-      </div>
+      </div> */}
 
       <style jsx>{`
         @keyframes ping-slow {
