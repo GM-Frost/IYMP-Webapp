@@ -146,7 +146,9 @@ const CorePhilosophy = () => {
                     >
                       {item.icon}
                     </div>
-                    <h3 className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                    <h3
+                      className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}
+                    >
                       {item.title}
                     </h3>
                   </div>
