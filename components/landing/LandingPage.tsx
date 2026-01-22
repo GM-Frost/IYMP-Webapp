@@ -7,6 +7,8 @@ import OurOffer from '@/components/landing/OurOffer';
 import LiveAlgoPreview from '@/components/landing/LiveAlgoPreview';
 import StudyComponent from '@/components/landing/StudyComponent';
 import HistoricChartSection from '@/components/landing/HistoricChartSection';
+import JoinSection from '@/components/landing/JoinSection';
+import Testimonial from '@/components/landing/Testimonial';
 
 const LandingPage = () => {
   return (
@@ -24,7 +26,9 @@ const LandingPage = () => {
           <StudyComponent />
           <OurOffer />
           <HistoricChartSection />
+          <JoinSection />
         </div>
+        <Testimonial />
       </Suspense>
     </>
   );

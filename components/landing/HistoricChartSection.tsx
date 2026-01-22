@@ -37,7 +37,7 @@ const HistoricChartSection = () => {
 
       <div className="mx-auto max-w-6xl px-6">
         <Motion className="motion-slide-top motion-ease-out motion-slow text-center" step={0}>
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-500/10 px-3 py-1 text-xs uppercase tracking-[0.3em] text-emerald-300">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-500/10 px-3 py-1 text-xs uppercase tracking-[0.3em] text-emerald-400">
             Verified performance
           </div>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -76,7 +76,7 @@ const HistoricChartSection = () => {
                   </div>
                 </div>
 
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-black/60 via-black/30 to-emerald-900/30 p-5">
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br to-emerald-900/30 p-5">
                   <svg viewBox="0 0 520 200" className="h-48 w-full" fill="none">
                     <defs>
                       <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
