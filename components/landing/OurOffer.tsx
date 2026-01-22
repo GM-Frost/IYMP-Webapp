@@ -142,6 +142,12 @@ const OurOffer = () => {
   return (
     <section className="relative overflow-hidden py-20">
       {/* background glow */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-6 left-6 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute inset-0 opacity-[0.06]">
+          <div className="h-full w-full bg-[radial-gradient(circle_at_top,#ffffff12,transparent_45%),radial-gradient(circle_at_bottom,#ffffff0f,transparent_50%)]" />
+        </div>
+      </div>
 
       <div className="mx-auto max-w-6xl px-6">
         {/* heading */}
@@ -154,16 +160,16 @@ const OurOffer = () => {
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
               What We Offer
             </h2>
-            <p className="text-xs uppercase tracking-[0.35em] text-emerald-300"></p>
+            <p className="text-xs uppercase tracking-[0.35em] text-emerald-400"></p>
           </div>
         </Motion>
 
         {/* slider */}
         <Motion className="motion-fade-up motion-slow" step={1} stepDelay={180}>
           <div className="flex items-center justify-between gap-4 pb-6">
-            <div className="flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-emerald-300/70">
+            <div className="flex items-center gap-3 text-sm uppercase tracking-[0.25em] text-emerald-400/70">
               <span>Offer Stack</span>
-              <span className="h-px w-10 bg-emerald-300/30" />
+              <span className="h-px w-10 bg-emerald-400/30" />
               <span>
                 {activeIndex + 1}/{OUR_OFFER.length}
               </span>
@@ -211,67 +217,74 @@ const OurOffer = () => {
                   className="snap-center"
                 >
                   <div
-                    className={`group relative h-90 w-[82vw] min-w-[82vw] max-w-[82vw] overflow-hidden rounded-2xl p-6 backdrop-blur-xl sm:w-96 sm:min-w-96 sm:max-w-96 lg:w-105 lg:min-w-105 lg:max-w-105 ${
+                    className={`group relative h-92 w-[82vw] min-w-[82vw] max-w-[82vw] overflow-hidden rounded-3xl p-6 backdrop-blur-xl sm:w-96 sm:min-w-96 sm:max-w-96 lg:w-105 lg:min-w-105 lg:max-w-105 ${
                       isDark
-                        ? 'border border-white/10 bg-black/50 text-white shadow-[0_15px_60px_-40px_rgba(16,185,129,0.45)]'
-                        : 'border border-black/10 bg-white/95 text-slate-900 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.15)]'
+                        ? 'border border-white/10 bg-black/60 text-white shadow-[0_25px_80px_-50px_rgba(16,185,129,0.55)]'
+                        : 'border border-black/10 bg-white/95 text-slate-900 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.18)]'
                     }`}
                   >
                     <div
                       aria-hidden
-                      className={`pointer-events-none absolute inset-0 ${
-                        isDark
-                          ? 'bg-linear-to-br from-white/12 via-white/6 to-transparent'
-                          : 'bg-linear-to-br from-white/90 via-white/40 to-transparent'
-                      }`}
+                      className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(16,185,129,0.12),transparent_40%,rgba(56,189,248,0.12))]"
                     />
                     <div
                       aria-hidden
-                      className="absolute -top-12 -right-6 h-24 w-24 rounded-full bg-emerald-400/15 blur-2xl transition-transform duration-700 group-hover:scale-110"
+                      className="absolute -top-16 -right-10 h-32 w-32 rounded-full bg-emerald-400/15 blur-2xl transition-transform duration-700 group-hover:scale-110"
                     />
                     <div
                       aria-hidden
-                      className="absolute bottom-0 left-0 h-1 w-full bg-linear-to-r from-emerald-400/50 via-emerald-300/10 to-transparent"
+                      className="absolute -bottom-10 left-6 h-20 w-20 rounded-full bg-cyan-400/20 blur-2xl transition-transform duration-700 group-hover:translate-y-2"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-emerald-400/60 via-cyan-300/20 to-transparent"
                     />
 
                     <div className="relative z-10 flex h-full flex-col gap-5">
-                      <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-emerald-300/80">
+                      <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-emerald-400/80">
                         <span>{item.tag}</span>
+                        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] text-white/70">
+                          Core
+                        </span>
                       </div>
-                      <div className="flex flex-col items-center gap-3">
+
+                      <div className="flex items-start gap-4">
                         <div
-                          className={`flex h-16 w-16 items-center justify-center rounded-xl border bg-emerald-500/10 ${
+                          className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border bg-emerald-500/10 ${
                             isDark
                               ? 'border-emerald-400/20 text-emerald-600'
-                              : 'border-emerald-300/50'
+                              : 'border-emerald-400/50'
                           }`}
                         >
                           {item.icon}
                         </div>
-                        <h3
-                          className={`text-lg font-semibold ${
-                            isDark ? 'text-white' : 'text-slate-900'
-                          }`}
-                        >
-                          {item.title}
-                        </h3>
+                        <div>
+                          <h3
+                            className={`text-lg font-semibold ${
+                              isDark ? 'text-white' : 'text-slate-900'
+                            }`}
+                          >
+                            {item.title}
+                          </h3>
+                          <p
+                            className={`mt-2 text-sm leading-relaxed ${
+                              isDark ? 'text-white/70' : 'text-slate-700'
+                            }`}
+                          >
+                            {item.description}
+                          </p>
+                        </div>
                       </div>
-                      <p
-                        className={`text-sm leading-relaxed ${
-                          isDark ? 'text-white/70' : 'text-slate-700'
-                        }`}
-                      >
-                        {item.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {item.highlights.map((highlight) => (
+
+                      <div className="mt-auto flex flex-wrap gap-2">
+                        {item.highlights.map((highlight, highlightIndex) => (
                           <span
                             key={highlight}
                             className={`rounded-full px-3 py-1 text-xs ${
                               isDark
                                 ? 'border border-white/10 bg-white/5 text-white/70'
                                 : 'border border-black/10 bg-black/3 text-slate-600'
-                            }`}
+                            } ${highlightIndex === 0 ? 'shadow-[0_0_18px_rgba(16,185,129,0.25)]' : ''}`}
                           >
                             {highlight}
                           </span>
