@@ -154,19 +154,12 @@ const LiveAlgoPreview = () => {
                       </span>
                     </div>
 
-                    <svg
-                      viewBox="0 0 420 140"
-                      className="h-32 w-full text-emerald-300/70"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M0 110 C40 95, 60 120, 90 95 C125 65, 150 70, 175 60 C200 50, 220 80, 245 70 C270 60, 300 40, 335 55 C360 65, 385 85, 420 40" />
-                      <path
-                        d="M0 125 C30 110, 70 130, 120 115 C155 105, 190 95, 220 100 C255 108, 280 95, 310 88 C340 80, 375 90, 420 65"
-                        className="text-cyan-300/60"
-                      />
-                    </svg>
+                    <img
+                      src="/images/candles-placeholder.svg"
+                      alt="Candlestick preview"
+                      className="h-32 w-full rounded-lg object-cover"
+                      loading="lazy"
+                    />
 
                     <div className="mt-4 grid gap-2 text-xs text-white/70 sm:grid-cols-2">
                       {STREAM.map((item) => (
