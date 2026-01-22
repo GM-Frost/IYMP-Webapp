@@ -78,7 +78,7 @@ const CorePhilosophy = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden py-20">
+    <section className="relative py-20">
       {/* background glow */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-10 right-10 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />

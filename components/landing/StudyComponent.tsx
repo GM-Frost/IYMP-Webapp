@@ -42,14 +42,10 @@ const StudyComponent = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden py-25">
+    <section className="relative py-25">
       {/* ambiance */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute bottom-6 left-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl" />
-        <div className="absolute bottom-0 right-6 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute inset-0 opacity-[0.05]">
-          <div className="h-full w-full bg-[radial-gradient(circle_at_top,#ffffff12,transparent_45%),radial-gradient(circle_at_bottom,#ffffff0f,transparent_50%)]" />
-        </div>
+      <div className="absolute inset-0 -z-10 opacity-[0.05]">
+        <div className="h-full w-full bg-[radial-gradient(circle_at_top,#ffffff12,transparent_45%),radial-gradient(circle_at_bottom,#ffffff0f,transparent_50%)]" />
       </div>
 
       <div className="mx-auto max-w-6xl px-6">
