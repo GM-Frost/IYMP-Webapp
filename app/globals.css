@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '../components/motion/motion.css';
 
 :root {
   --gradient-main: linear-gradient(
@@ -185,9 +186,48 @@
 
   .dark .outlined-bloom-hover:hover,
   .dark .outlined-bloom-hover:focus {
-    box-shadow: 0 0 8px 2px rgba(46, 191, 140, 0.5), 0 0 32px 8px rgba(46, 191, 140, 0.2);
+    box-shadow:
+      0 0 8px 2px rgba(46, 191, 140, 0.5),
+      0 0 32px 8px rgba(46, 191, 140, 0.2);
     border-color: transparent;
     color: #fff;
-    transition: background-position 0.3s, box-shadow 0.3s;
+    transition:
+      background-position 0.3s,
+      box-shadow 0.3s;
   }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes ticker-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ticker-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-ticker-left {
+  animation: ticker-left 40s linear infinite;
+}
+
+.animate-ticker-right {
+  animation: ticker-right 40s linear infinite;
 }
