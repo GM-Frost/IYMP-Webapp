@@ -10,11 +10,30 @@ export const NAV_ITEMS: NavItem[] = [
     href: '/',
   },
   {
-    label: 'Products',
+    label: 'Algo Suite',
     children: [
-      { label: 'Stocks', href: '/products/stocks' },
-      { label: 'Crypto', href: '/products/crypto' },
-      { label: 'ETF', href: '/products/etf' },
+      { label: 'Overview', href: '/algos' },
+      { label: 'Algo Levels', href: '/algos/levels' },
+      { label: 'Strategy Library', href: '/algos/strategies' },
+      { label: 'Ticker Coverage', href: '/algos/tickers' },
+      { label: 'TradingView Access', href: '/algos/tradingview' },
+    ],
+  },
+  {
+    label: 'Resources',
+    children: [
+      { label: 'Overview', href: '/resources' },
+      { label: 'Booklet', href: '/resources/booklet' },
+      { label: 'Video Library', href: '/resources/videos' },
+      { label: 'PDF Vault', href: '/resources/pdfs' },
+    ],
+  },
+  {
+    label: 'Community',
+    children: [
+      { label: 'Overview', href: '/community' },
+      { label: 'Discord Hub', href: '/community/discord' },
+      { label: 'Daily Trade Plan', href: '/community/trade-plan' },
     ],
   },
   {
@@ -25,7 +44,8 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'About',
     children: [
       { label: 'Company', href: '/about/company' },
-      { label: 'Blog', href: '/blog' },
+      { label: 'Methodology', href: '/about/methodology' },
+      { label: 'Disclaimer', href: '/about/disclaimer' },
     ],
   },
 ];
