@@ -35,7 +35,7 @@
 
   /* Text */
   --color-text-primary: #111827;
-  --color-text-muted: #6b7280;
+  --color-text-muted: #666a73;
 
   /* LIGHT MODE BACKGROUND (NO GRADIENT) */
   --bg-base: #ffffff;
@@ -52,7 +52,7 @@
   --color-border: #2a2e38;
 
   --color-text-primary: #e5e7eb;
-  --color-text-muted: #9ca3af;
+  --color-text-muted: #6f7073;
 
   /* Dark base */
   --bg-base: #05080f;
