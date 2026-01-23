@@ -10,6 +10,15 @@ export const NAV_ITEMS: NavItem[] = [
     href: '/',
   },
   {
+    label: 'About',
+    children: [
+      { label: 'Company', href: '/about/company' },
+      { label: 'Methodology', href: '/about/methodology' },
+      { label: 'Disclaimer', href: '/about/disclaimer' },
+    ],
+  },
+
+  {
     label: 'Algo Suite',
     children: [
       { label: 'Overview', href: '/algos' },
@@ -37,15 +46,11 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'Pricing',
-    href: '/pricing',
+    label: 'Learning Platform',
+    href: '',
   },
   {
-    label: 'About',
-    children: [
-      { label: 'Company', href: '/about/company' },
-      { label: 'Methodology', href: '/about/methodology' },
-      { label: 'Disclaimer', href: '/about/disclaimer' },
-    ],
+    label: 'Pricing',
+    href: '/pricing',
   },
 ];
