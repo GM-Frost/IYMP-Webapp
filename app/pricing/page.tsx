@@ -1,14 +1,16 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { Button } from '@/components/ui';
 import { Motion } from '@/components/motion/Motion';
 
 const TIERS = [
   {
     name: 'PRO',
-    price: '$99',
-    cadence: '/month',
+    monthlyPrice: 99,
+    annualPrice: 999,
+    annualNote: 'Save 2 months',
     variant: 'default',
     highlight: 'Build a rules-based trading foundation with structure and clarity.',
     badge: 'Foundation Trader',
@@ -23,8 +25,9 @@ const TIERS = [
   },
   {
     name: 'PREMIUM',
-    price: '$199',
-    cadence: '/month',
+    monthlyPrice: 199,
+    annualPrice: 2200,
+    annualNote: 'Save 2 months',
     variant: 'primary',
     highlight: 'For traders focused on execution consistency and decision-making.',
     badge: 'Execution Trader',
@@ -42,9 +45,11 @@ const TIERS = [
   },
   {
     name: 'ELITE',
-    price: 'Apply',
+    monthlyPrice: null,
+    annualPrice: 2499,
+    annualOriginal: 3000,
     variant: 'secondary',
-    cadence: '',
+    annualNote: 'Best Value',
     highlight: 'Direct mentorship, accountability, and system mastery.',
     badge: 'Mentorship',
     featured: true,
@@ -53,10 +58,10 @@ const TIERS = [
       'Live Q&A + chart walkthroughs',
       'Trade reviews (submitted in advance)',
       'IYMP discipline scoring system',
-      'Risk & capital management templates',
+      'Risk & capital management',
       'Private Elite Discord',
       'Small-group interaction',
-      'Direct mentor access (office hours)',
+      'Direct mentor access (Trade hours)',
     ],
     cta: 'Apply for Elite',
   },
@@ -165,6 +170,24 @@ const FAQS = [
 ];
 
 export default function PricingPage() {
+  const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');
+
+  const formatPrice = (value: number | null) => {
+    if (value === null) return '-';
+    return `$${value.toLocaleString('en-US')}`;
+  };
+
+  const getMonthlyTotal = (value: number | null) => {
+    if (value === null) return '-';
+    return `$${(value * 12).toLocaleString('en-US')}`;
+  };
+
+  const getAnnualOriginal = (tier: { monthlyPrice: number | null; annualOriginal?: number }) => {
+    if (tier.annualOriginal) return `$${tier.annualOriginal.toLocaleString('en-US')}`;
+    if (tier.monthlyPrice === null) return '-';
+    return `$${(tier.monthlyPrice * 12).toLocaleString('en-US')}`;
+  };
+
   const scrollToCompare = () => {
     const target = document.getElementById('compare-heading');
     if (target) {
@@ -209,7 +232,7 @@ export default function PricingPage() {
           </Motion>
 
           <Motion className="motion-slide-right motion-ease-out" step={1}>
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-xl">
+            <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-6 shadow-xl mb-20">
               <div className="pointer-events-none absolute inset-0">
                 <div className="absolute -right-10 -top-16 h-48 w-48 rounded-full bg-primary/15 blur-[80px]" />
                 <div className="absolute -bottom-10 left-10 h-48 w-48 rounded-full bg-secondary/20 blur-[90px]" />
@@ -250,8 +273,38 @@ export default function PricingPage() {
             </div>
           </Motion>
         </div>
-
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
+        <Motion className="motion-rise motion-ease-out" step={1}>
+          <div className="mt-20 flex items-center justify-end">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-2 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
+              <button
+                type="button"
+                onClick={() => setBilling('monthly')}
+                className={`rounded-full px-3 py-1 transition ${
+                  billing === 'monthly'
+                    ? 'bg-primary/15 text-primary'
+                    : 'text-text-muted hover:text-primary'
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                onClick={() => setBilling('annual')}
+                className={`rounded-full px-3 py-1 transition ${
+                  billing === 'annual'
+                    ? 'bg-primary/15 text-primary'
+                    : 'text-text-muted hover:text-primary'
+                }`}
+              >
+                Annual
+              </button>
+              <span className="rounded-full bg-secondary/20 px-3 py-1 text-[10px] font-semibold text-secondary">
+                Best Value
+              </span>
+            </div>
+          </div>
+        </Motion>
+        <div className="mt-6 grid gap-8 lg:grid-cols-3">
           {TIERS.map((tier, index) => (
             <Motion key={tier.name} className="motion-rise motion-ease-out" step={index}>
               <div
@@ -281,9 +334,36 @@ export default function PricingPage() {
                   )}
                 </div>
                 <div className="mt-6 flex items-end gap-2">
-                  <p className="text-4xl font-semibold">{tier.price}</p>
-                  <p className="text-sm text-primary-dark font-semibold">{tier.cadence}</p>
+                  <p className="text-4xl font-semibold">
+                    {billing === 'annual'
+                      ? formatPrice(tier.annualPrice)
+                      : formatPrice(tier.monthlyPrice)}
+                  </p>
+                  <p className="text-sm text-primary-dark font-semibold">
+                    {tier.monthlyPrice === null ? '' : billing === 'annual' ? '/year' : '/month'}
+                  </p>
                 </div>
+                {tier.monthlyPrice !== null ? (
+                  billing === 'annual' ? (
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-dark">
+                      <span>{tier.annualNote}</span>
+                      <span className="opacity-70 line-through">
+                        {getMonthlyTotal(tier.monthlyPrice)}
+                      </span>
+                      <span className="opacity-80">billed annually</span>
+                    </div>
+                  ) : null
+                ) : billing === 'annual' ? (
+                  <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-dark">
+                    <span>{tier.annualNote}</span>
+                    <span className="opacity-70 line-through">{getAnnualOriginal(tier)}</span>
+                    <span className="opacity-80">annual access</span>
+                  </div>
+                ) : (
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary-dark">
+                    Annual only
+                  </p>
+                )}
                 <p className="mt-3 text-sm bg-black/20 rounded-2xl p-2 text-center tracking-wide">
                   {tier.highlight}
                 </p>
@@ -353,7 +433,7 @@ export default function PricingPage() {
                       key={row.label}
                       className="col-span-4 grid grid-cols-4 gap-4 border-t border-border  py-2 items-center"
                     >
-                      <div className="text-text-muted">{row.label}</div>
+                      <div className="">{row.label}</div>
                       <div className="text-center">
                         {row.pro ? (row.pro === true ? 'Included' : row.pro) : '❌'}
                       </div>
