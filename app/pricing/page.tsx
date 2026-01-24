@@ -266,9 +266,7 @@ export default function PricingPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-lg font-semibold">{tier.name}</p>
-                    <p className="text-xs uppercase tracking-[0.18em] text-text-muted">
-                      {tier.badge}
-                    </p>
+                    <p className="text-xs uppercase tracking-[0.18em]">{tier.badge}</p>
                   </div>
                   {tier.variant === 'primary' && (
                     <span className="rounded-full bg-black/10 px-3 py-1 text-[10px] font-semibold uppercase">
