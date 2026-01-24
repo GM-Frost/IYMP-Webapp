@@ -284,9 +284,11 @@ export default function PricingPage() {
                 </div>
                 <div className="mt-6 flex items-end gap-2">
                   <p className="text-4xl font-semibold">{tier.price}</p>
-                  <p className="text-sm text-text-muted font-semibold">{tier.cadence}</p>
+                  <p className="text-sm text-primary-dark font-semibold">{tier.cadence}</p>
                 </div>
-                <p className="mt-3 text-sm text-text-muted">{tier.highlight}</p>
+                <p className="mt-3 text-sm bg-black/20 rounded-2xl p-2 text-center tracking-wide">
+                  {tier.highlight}
+                </p>
                 <div className="mt-6 space-y-3 text-sm">
                   {tier.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
@@ -324,34 +326,48 @@ export default function PricingPage() {
               </p>
             </div>
             <div className="mt-8 overflow-x-auto">
-              <div className="min-w-130 grid grid-cols-4 gap-4 text-sm">
-                <div className="text-text-muted font-bold uppercase tracking-[0.16em] text-xs">
-                  Feature
+              <div className="relative min-w-130 ">
+                {/* Column background layers */}
+                <div className="pointer-events-none absolute inset-0 grid grid-cols-4 gap-4">
+                  <div />
+                  <div className="rounded-2xl bg-black/10" />
+                  <div className="rounded-2xl bg-primary/50" />
+                  <div className="rounded-2xl bg-secondary/50" />
                 </div>
-                <div className="text-black bg-white/30  rounded-xl text-center font-bold uppercase tracking-[0.16em] text-xs">
-                  PRO
-                </div>
-                <div className="text-black bg-primary rounded-xl text-center font-bold uppercase tracking-[0.16em] text-xs">
-                  PREMIUM
-                </div>
-                <div className="text-black bg-secondary rounded-xl text-center font-bold uppercase tracking-[0.16em] text-xs ">
-                  ELITE
-                </div>
-                {COMPARISON.map((row) => (
-                  <div
-                    key={row.label}
-                    className="col-span-4 grid grid-cols-4 gap-4 border-t border-border py-3"
-                  >
-                    <div className="text-text-muted">{row.label}</div>
-                    <div>{row.pro ? (row.pro === true ? 'Included ✅' : row.pro) : '❌'}</div>
-                    <div>
-                      {row.premium ? (row.premium === true ? 'Included  ✅' : row.premium) : '❌'}
-                    </div>
-                    <div>
-                      {row.elite ? (row.elite === true ? 'Included  ✅' : row.elite) : '❌'}
-                    </div>
+
+                {/* Table content */}
+                <div className="relative z-10 grid grid-cols-4 gap-4 text-sm py-2">
+                  <div className="text-text-muted font-bold uppercase tracking-[0.16em] text-xs">
+                    Feature
                   </div>
-                ))}
+                  <div className="text-muted text-center font-bold uppercase tracking-[0.16em] text-xs">
+                    PRO
+                  </div>
+                  <div className="text-black text-center font-bold uppercase tracking-[0.16em] text-xs">
+                    PREMIUM
+                  </div>
+                  <div className="text-black text-center font-bold uppercase tracking-[0.16em] text-xs">
+                    ELITE
+                  </div>
+
+                  {COMPARISON.map((row) => (
+                    <div
+                      key={row.label}
+                      className="col-span-4 grid grid-cols-4 gap-4 border-t border-border  py-2 items-center"
+                    >
+                      <div className="text-text-muted">{row.label}</div>
+                      <div className="text-center">
+                        {row.pro ? (row.pro === true ? 'Included' : row.pro) : '❌'}
+                      </div>
+                      <div className="text-center">
+                        {row.premium ? (row.premium === true ? 'Included' : row.premium) : '❌'}
+                      </div>
+                      <div className="text-center">
+                        {row.elite ? (row.elite === true ? 'Included' : row.elite) : '❌'}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
