@@ -16,6 +16,7 @@ const TIERS = [
       'Community announcements',
       'Public market notes',
       'Starter education previews',
+      'Discord community access',
     ],
     cta: 'Register Free',
   },
@@ -28,7 +29,7 @@ const TIERS = [
     features: [
       'Algo levels + PDF plan',
       'Strategy cheat sheets',
-      'Discord community access',
+
       'Core ticker coverage',
       'Access to Learning Platform',
     ],
@@ -48,8 +49,6 @@ const TIERS = [
       'TradingView overlays',
       'Weekly strategy reviews',
       'Access to Learning Platform',
-      'Small group coaching',
-      'Priority Q&A sessions',
       'Advanced performance reviews',
       'Private strategy labs',
     ],
