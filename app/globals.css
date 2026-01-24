@@ -4,16 +4,32 @@
 :root {
   --gradient-main: linear-gradient(
     90deg,
-    #30d19e,
-    #30d09c,
-    #2ed1a4,
-    #2bd1b4,
-    #26d1c6,
-    #24d19d,
-    #23d999,
-    #4adc6d,
-    #90e06e,
-    #99ec84
+    #25b887,
+    #25b685,
+    #23b98d,
+    #20b99c,
+    #1cb9ad,
+    #1ab885,
+    #19bf81,
+    #3cc458,
+    #78c85b,
+    #81d56d
+  );
+}
+
+:root {
+  --gradient-secondary: linear-gradient(
+    90deg,
+    #f7c55a,
+    #f8bb46,
+    #f9ae32,
+    #faaa2d,
+    #fba428,
+    #f99c2b,
+    #f89533,
+    #f68e3b,
+    #f4aa45,
+    #f6bf54
   );
 }
 
@@ -152,6 +168,29 @@
     background-color: var(--color-primary-light);
   }
 
+  /* Secondary gradient background */
+  .bg-secondary {
+    background: var(--gradient-secondary);
+    background-size: 200% 200%;
+    background-position: 0% 100%;
+    transition: background-position 0.3s;
+    color: black;
+  }
+
+  .bg-secondary:hover,
+  .bg-secondary:focus {
+    background-position: 100% 0%;
+  }
+
+  .gradient-text-secondary {
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+  }
+
   .bg-gradient {
     background: var(--gradient-main);
     background-size: 200% 200%;
@@ -181,6 +220,15 @@
     background-size: 200% 200%;
     background-position: 100% 0%;
     color: #fff !important;
+    border-color: transparent !important;
+  }
+
+  .outlined-gradient-secondary-hover:hover,
+  .outlined-gradient-secondary-hover:focus {
+    background-image: var(--gradient-secondary);
+    background-size: 200% 200%;
+    background-position: 100% 0%;
+    color: #000 !important;
     border-color: transparent !important;
   }
 

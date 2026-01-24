@@ -6,98 +6,140 @@ import { Motion } from '@/components/motion/Motion';
 
 const TIERS = [
   {
-    name: 'Free',
-    price: '$0',
-    cadence: '/month',
-    highlight: 'Create your account and get the basics.',
-    badge: 'Just Register',
-    features: [
-      'Account access + onboarding',
-      'Community announcements',
-      'Public market notes',
-      'Starter education previews',
-      'Discord community access',
-    ],
-    cta: 'Register Free',
-  },
-  {
-    name: 'Starter',
-    price: '$50',
-    cadence: '/month',
-    highlight: 'For focused traders getting the playbook.',
-    badge: 'Course Access',
-    features: [
-      'Algo levels + PDF plan',
-      'Strategy cheat sheets',
-
-      'Core ticker coverage',
-      'Access to Learning Platform',
-    ],
-    cta: 'Start Starter',
-  },
-  {
-    name: 'Pro',
+    name: 'PRO',
     price: '$99',
     cadence: '/month',
-    highlight: 'Full access to strategies, alerts, live support, resouces & learning Platform',
-    badge: 'Most Popular',
+    variant: 'default',
+    highlight: 'Build a rules-based trading foundation with structure and clarity.',
+    badge: 'Foundation Trader',
+    features: [
+      'Daily Algo Radar (levels + bias)',
+      'Market structure guidance (ES / NQ / SPY / key stocks)',
+      'TradingView IYMP indicators',
+      'Educational content library (process, risk, mindset)',
+      'Discord access (read + limited chat)',
+    ],
+    cta: 'Start Pro',
+  },
+  {
+    name: 'PREMIUM',
+    price: '$199',
+    cadence: '/month',
+    variant: 'primary',
+    highlight: 'For traders focused on execution consistency and decision-making.',
+    badge: 'Execution Trader',
     featured: true,
     features: [
-      'Everything in Starter',
-      'Real-time algo alerts',
-      'Live trade plan walkthroughs',
-      'TradingView overlays',
-      'Weekly strategy reviews',
-      'Access to Learning Platform',
-      'Advanced performance reviews',
-      'Private strategy labs',
+      'Everything in PRO',
+      'Live market mapping (AM sessions)',
+      'Bias confirmation & scenario planning',
+      'Trade execution walkthroughs (education)',
+      'Weekly performance recap',
+      'Discipline framework & journaling guidance',
+      'Priority VIP Discord channels',
     ],
-    cta: 'Go Pro',
+    cta: 'Go Premium',
+  },
+  {
+    name: 'ELITE',
+    price: 'Apply',
+    variant: 'secondary',
+    cadence: '',
+    highlight: 'Direct mentorship, accountability, and system mastery.',
+    badge: 'Mentorship',
+    featured: true,
+    features: [
+      'Weekly 90-min live mentorship call',
+      'Live Q&A + chart walkthroughs',
+      'Trade reviews (submitted in advance)',
+      'IYMP discipline scoring system',
+      'Risk & capital management templates',
+      'Private Elite Discord',
+      'Small-group interaction',
+      'Direct mentor access (office hours)',
+    ],
+    cta: 'Apply for Elite',
   },
 ];
 
 const COMPARISON = [
   {
-    label: 'Account access + onboarding',
-    free: true,
-    starter: true,
+    label: 'Daily Algo Radar (levels + bias)',
     pro: true,
+    premium: true,
+    elite: true,
   },
   {
-    label: 'Community announcements',
-    free: true,
-    starter: true,
+    label: 'Market structure guidance',
     pro: true,
+    premium: true,
+    elite: true,
   },
   {
-    label: 'Algo levels & daily PDF plans',
-    free: false,
-    starter: true,
+    label: 'TradingView IYMP indicators',
     pro: true,
+    premium: true,
+    elite: true,
   },
   {
-    label: 'Real-time alerts & level updates',
-    free: false,
-    starter: false,
+    label: 'Educational content library',
     pro: true,
+    premium: true,
+    elite: true,
   },
   {
-    label: 'TradingView overlays',
-    free: false,
-    starter: false,
-    pro: true,
+    label: 'Discord access',
+    pro: 'Limited',
+    premium: 'VIP',
+    elite: 'Private',
   },
   {
-    label: 'Weekly strategy review calls',
-    free: false,
-    starter: false,
-    pro: true,
+    label: 'Live market mapping sessions',
+    pro: false,
+    premium: true,
+    elite: true,
   },
   {
-    label: 'Priority coaching and feedback',
-    free: false,
-    starter: false,
-    pro: true,
+    label: 'Bias confirmation & scenario planning',
+    pro: false,
+    premium: true,
+    elite: true,
+  },
+  {
+    label: 'Trade execution walkthroughs',
+    pro: false,
+    premium: true,
+    elite: true,
+  },
+  {
+    label: 'Weekly performance recap',
+    pro: false,
+    premium: true,
+    elite: true,
+  },
+  {
+    label: 'Discipline & journaling frameworks',
+    pro: false,
+    premium: true,
+    elite: true,
+  },
+  {
+    label: 'Weekly mentorship call (90 min)',
+    pro: false,
+    premium: false,
+    elite: true,
+  },
+  {
+    label: 'Trade reviews',
+    pro: false,
+    premium: false,
+    elite: true,
+  },
+  {
+    label: 'Direct mentor access',
+    pro: false,
+    premium: false,
+    elite: true,
   },
 ];
 
@@ -157,7 +199,7 @@ export default function PricingPage() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button bloom className="min-w-45">
-                  Start with Pro
+                  Start with Premium
                 </Button>
                 <Button variant="outlined" className="min-w-45" onClick={scrollToCompare}>
                   Compare Plans
@@ -214,9 +256,11 @@ export default function PricingPage() {
             <Motion key={tier.name} className="motion-rise motion-ease-out" step={index}>
               <div
                 className={`relative rounded-3xl border p-6 shadow-lg transition-transform duration-300 hover:-translate-y-2 ${
-                  tier.featured
-                    ? 'border-primary/60 bg-primary backdrop-blur-3xl text-black'
-                    : 'border-border bg-surface'
+                  tier.variant === 'primary'
+                    ? 'border-primary/60 bg-primary text-black'
+                    : tier.variant === 'secondary'
+                      ? 'border-secondary/60 bg-secondary text-black'
+                      : 'border-border bg-surface'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -226,11 +270,17 @@ export default function PricingPage() {
                       {tier.badge}
                     </p>
                   </div>
-                  {tier.featured ? (
+                  {tier.variant === 'primary' && (
                     <span className="rounded-full bg-black/10 px-3 py-1 text-[10px] font-semibold uppercase">
-                      Top Choice
+                      Most Popular
                     </span>
-                  ) : null}
+                  )}
+
+                  {tier.variant === 'secondary' && (
+                    <span className="rounded-full bg-black/10 px-3 py-1 text-[10px] font-semibold uppercase">
+                      Mentorship
+                    </span>
+                  )}
                 </div>
                 <div className="mt-6 flex items-end gap-2">
                   <p className="text-4xl font-semibold">{tier.price}</p>
@@ -246,8 +296,13 @@ export default function PricingPage() {
                   ))}
                 </div>
                 <Button
-                  bloom={tier.featured}
-                  variant={tier.featured ? 'contained' : 'outlined'}
+                  bloom={tier.variant !== 'default'}
+                  variant={
+                    tier.variant === 'primary' || tier.variant === 'secondary'
+                      ? 'contained'
+                      : 'outlined'
+                  }
+                  color={tier.variant === 'secondary' ? 'secondary' : undefined}
                   className="mt-8 w-full"
                 >
                   {tier.cta}
@@ -273,14 +328,14 @@ export default function PricingPage() {
                 <div className="text-text-muted font-bold uppercase tracking-[0.16em] text-xs">
                   Feature
                 </div>
-                <div className="text-text-muted font-bold uppercase tracking-[0.16em] text-xs">
-                  Free
+                <div className="text-black bg-white/30  rounded-xl text-center font-bold uppercase tracking-[0.16em] text-xs">
+                  PRO
                 </div>
-                <div className="text-text-muted font-bold uppercase tracking-[0.16em] text-xs">
-                  Starter
+                <div className="text-black bg-primary rounded-xl text-center font-bold uppercase tracking-[0.16em] text-xs">
+                  PREMIUM
                 </div>
-                <div className="text-primary font-bold uppercase tracking-[0.16em] text-xs ">
-                  Pro
+                <div className="text-black bg-secondary rounded-xl text-center font-bold uppercase tracking-[0.16em] text-xs ">
+                  ELITE
                 </div>
                 {COMPARISON.map((row) => (
                   <div
@@ -288,9 +343,13 @@ export default function PricingPage() {
                     className="col-span-4 grid grid-cols-4 gap-4 border-t border-border py-3"
                   >
                     <div className="text-text-muted">{row.label}</div>
-                    <div>{row.free ? 'Included' : '-'}</div>
-                    <div>{row.starter ? 'Included' : '-'}</div>
-                    <div>{row.pro ? 'Included' : '-'}</div>
+                    <div>{row.pro ? (row.pro === true ? 'Included ✅' : row.pro) : '❌'}</div>
+                    <div>
+                      {row.premium ? (row.premium === true ? 'Included  ✅' : row.premium) : '❌'}
+                    </div>
+                    <div>
+                      {row.elite ? (row.elite === true ? 'Included  ✅' : row.elite) : '❌'}
+                    </div>
                   </div>
                 ))}
               </div>
