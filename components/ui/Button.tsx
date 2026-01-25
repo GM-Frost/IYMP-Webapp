@@ -42,7 +42,7 @@ export function Button({
   const colorClass = colorVars[color];
 
   const baseClasses =
-    'rounded-2xl px-6 py-3 font-bold transition-all duration-150 focus:outline-none';
+    'rounded-2xl px-6 py-3 font-bold transition-all duration-150 focus:outline-none cursor-pointerim ';
 
   const bloomClass =
     bloom && variant === 'contained' ? 'shadow-[0_0_8px_2px_rgba(46,191,140,0.25)]' : '';

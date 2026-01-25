@@ -23,7 +23,7 @@ const HIGHLIGHTS = [
 
 const STRATEGIES = [
   {
-    name: 'ET (8/21 SMA)',
+    name: 'ET',
     summary: 'Trend structure with clean continuation triggers and risk clarity.',
   },
   {
@@ -31,7 +31,7 @@ const STRATEGIES = [
     summary: 'Momentum ignition setup designed for breakout expansion.',
   },
   {
-    name: 'DBT (3-Day Reversal)',
+    name: 'DBT (3-Day Continuation)',
     summary: 'Mean reversion entry when price shifts after a three-day run.',
   },
   {
@@ -45,6 +45,14 @@ const STRATEGIES = [
   {
     name: 'TGIF (Friday Momentum)',
     summary: 'End-of-week acceleration plan with defined targets.',
+  },
+  {
+    name: 'TGIT (Thursday Momentum)',
+    summary: 'End-of-week acceleration plan with defined targets.',
+  },
+  {
+    name: 'COC',
+    summary: '1 day swing',
   },
 ];
 

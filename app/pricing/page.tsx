@@ -10,16 +10,18 @@ const TIERS = [
     name: 'PRO',
     monthlyPrice: 99,
     annualPrice: 999,
-    annualNote: 'Save 2 months',
     variant: 'default',
-    highlight: 'Build a rules-based trading foundation with structure and clarity.',
-    badge: 'Foundation Trader',
+    badge: 'Foundation',
+    highlight: 'Market context, bias, and discipline ? no execution, no signals.',
+    outcome:
+      'I know if the market is bullish, bearish, or neutral ? and whether I should even trade.',
     features: [
-      'Daily Algo Radar (levels + bias)',
-      'Market structure guidance (ES / NQ / SPY / key stocks)',
-      'TradingView IYMP indicators',
-      'Educational content library (process, risk, mindset)',
-      'Discord access (read + limited chat)',
+      'IYMP Lite Indicators (Algo Levels, Candles, EMA/SMA, TTM Squeeze)',
+      'Daily Algo Radar (HTF bias, reaction zones, no-trade zones)',
+      'Market state identification (trend / range / chop)',
+      'Structured education (context & risk-first planning)',
+      'Discord access (Pro channels)',
+      'No signals ? No execution coaching',
     ],
     cta: 'Start Pro',
   },
@@ -27,126 +29,109 @@ const TIERS = [
     name: 'PREMIUM',
     monthlyPrice: 199,
     annualPrice: 2200,
-    annualNote: 'Save 2 months',
     variant: 'primary',
-    highlight: 'For traders focused on execution consistency and decision-making.',
-    badge: 'Execution Trader',
+    badge: 'Execution',
     featured: true,
+    highlight: 'Execution clarity using professional-grade tools and live guidance.',
+    outcome:
+      'I know what I?m waiting for, why I?m waiting, and how to execute without forcing trades.',
     features: [
       'Everything in PRO',
-      'Live market mapping (AM sessions)',
-      'Bias confirmation & scenario planning',
-      'Trade execution walkthroughs (education)',
-      'Weekly performance recap',
-      'Discipline framework & journaling guidance',
-      'Priority VIP Discord channels',
+      'High-Level IYMP Indicators',
+      'SPX Indicator (index pressure)',
+      'Live market mapping & scenario planning',
+      'Volatility guidance (trade / no-trade)',
+      'Execution framework training',
+      'Premium Discord channels + light trade reviews',
     ],
     cta: 'Go Premium',
   },
   {
     name: 'ELITE',
+    variant: 'secondary',
     monthlyPrice: null,
     annualPrice: 2499,
     annualOriginal: 3000,
-    variant: 'secondary',
-    annualNote: 'Best Value',
-    highlight: 'Direct mentorship, accountability, and system mastery.',
     badge: 'Mentorship',
     featured: true,
+    highlight: 'Full Algo mastery, execution refinement, and accountability.',
+    outcome: 'I trade independently, understand the Algo deeply, and execute with confidence.',
     features: [
-      'Weekly 90-min live mentorship call',
-      'Live Q&A + chart walkthroughs',
-      'Trade reviews (submitted in advance)',
-      'IYMP discipline scoring system',
-      'Risk & capital management',
+      'Full IYMP Proprietary Algo access',
+      'Institutional liquidity & session-based logic',
+      'Full SPX HR-HR framework',
+      'Weekly 90-min mentorship calls (small cohort)',
+      'Trade reviews & discipline scoring',
+      'Risk & capital preservation systems',
       'Private Elite Discord',
-      'Small-group interaction',
-      'Direct mentor access (Trade hours)',
     ],
     cta: 'Apply for Elite',
   },
 ];
 
 const COMPARISON = [
+  { label: 'Market Context', type: 'section' },
+
+  { label: 'Daily Algo Radar (Tables)', pro: true, premium: true, elite: true },
+
+  { label: 'Indicators', type: 'section' },
+
+  { label: 'Algo-driven key levels', pro: true, premium: true, elite: true },
+  { label: 'IYMP Volatility Screener', pro: true, premium: true, elite: true },
+  { label: 'IYMP Quantum Matrix', pro: true, premium: true, elite: true },
+  { label: 'IYMP MR Pro', pro: true, premium: true, elite: true },
+  { label: 'IYMP Algo VR Pro', pro: false, premium: true, elite: true },
+  { label: 'Algo Pivot Levels', pro: false, premium: true, elite: true },
+  { label: 'Algo Strategy signals', pro: false, premium: true, elite: true },
+  { label: 'Algo Driven SPX Indicator (Buy/Sell)', pro: false, premium: true, elite: true },
+
+  { label: 'Execution Support', type: 'section' },
+
+  { label: 'Execution rules & invalidation logic', pro: false, premium: true, elite: true },
+  { label: 'Live market mapping', pro: false, premium: true, elite: true },
+  { label: 'Scenario planning', pro: false, premium: true, elite: true },
+  { label: 'Volatility guidance', pro: false, premium: true, elite: true },
+
+  { label: 'Mentorship & Accountability', type: 'section' },
+
+  { label: 'Journal reviews ( 1-on-1 )', pro: false, premium: false, elite: true },
+  { label: 'Algo Mentorship Session', pro: false, premium: false, elite: true },
+  { label: '(A+) vs (B-) Trade Quality Filtering', pro: false, premium: 'Light', elite: true },
+  { label: 'Discipline scoring system', pro: false, premium: false, elite: true },
+  { label: 'Psychology & Execution Coaching', pro: false, premium: false, elite: true },
+  { label: 'Risk & Capital Preservation Coaching', pro: false, premium: false, elite: true },
+  { label: 'Weekly mentorship calls', pro: false, premium: false, elite: true },
+  { label: 'Direct mentor access ( 1-on-1 )', pro: false, premium: false, elite: true },
+
+  { label: 'Community', type: 'section' },
+
+  { label: 'Discord access', pro: true, premium: true, elite: true },
+
+  { label: 'Outcome', type: 'section' },
+
   {
-    label: 'Daily Algo Radar (levels + bias)',
-    pro: true,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Market structure guidance',
-    pro: true,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'TradingView IYMP indicators',
-    pro: true,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Educational content library',
-    pro: true,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Discord access',
-    pro: 'Limited',
-    premium: 'VIP',
-    elite: 'Private',
-  },
-  {
-    label: 'Live market mapping sessions',
-    pro: false,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Bias confirmation & scenario planning',
-    pro: false,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Trade execution walkthroughs',
-    pro: false,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Weekly performance recap',
-    pro: false,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Discipline & journaling frameworks',
-    pro: false,
-    premium: true,
-    elite: true,
-  },
-  {
-    label: 'Weekly mentorship call (90 min)',
-    pro: false,
-    premium: false,
-    elite: true,
-  },
-  {
-    label: 'Trade reviews',
-    pro: false,
-    premium: false,
-    elite: true,
-  },
-  {
-    label: 'Direct mentor access',
-    pro: false,
-    premium: false,
-    elite: true,
+    label: 'Primary result',
+    pro: 'Market awareness',
+    premium: 'Execution confidence',
+    elite: 'Independent mastery',
   },
 ];
+// const COMPARISON = [
+//   { label: 'IYMP Lite Indicators', pro: true, premium: true, elite: true },
+//   { label: 'Daily Algo Radar', pro: true, premium: true, elite: true },
+//   { label: 'Market bias & no-trade zones', pro: true, premium: true, elite: true },
+
+//   { label: 'High-Level Indicators', pro: false, premium: true, elite: true },
+//   { label: 'Strategy signals (rule-based)', pro: false, premium: true, elite: true },
+//   { label: 'SPX Indicator', pro: false, premium: true, elite: true },
+
+//   { label: 'Live market guidance', pro: false, premium: true, elite: true },
+//   { label: 'Execution framework training', pro: false, premium: true, elite: true },
+
+//   { label: 'Full Proprietary Algo access', pro: false, premium: false, elite: true },
+//   { label: 'Weekly mentorship & accountability', pro: false, premium: false, elite: true },
+//   { label: 'Private Elite Discord', pro: false, premium: false, elite: true },
+// ];
 
 const FAQS = [
   {
@@ -172,21 +157,31 @@ const FAQS = [
 export default function PricingPage() {
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');
 
-  const formatPrice = (value: number | null) => {
-    if (value === null) return '-';
+  const formatPrice = (value: number | null | undefined) => {
+    if (value === null || value === undefined) return '-';
     return `$${value.toLocaleString('en-US')}`;
   };
 
-  const getMonthlyTotal = (value: number | null) => {
-    if (value === null) return '-';
+  const getMonthlyTotal = (value: number | null | undefined) => {
+    if (value === null || value === undefined) return '-';
     return `$${(value * 12).toLocaleString('en-US')}`;
   };
 
-  const getAnnualOriginal = (tier: { monthlyPrice: number | null; annualOriginal?: number }) => {
+  const getAnnualOriginal = (tier: { monthlyPrice?: number | null; annualOriginal?: number }) => {
     if (tier.annualOriginal) return `$${tier.annualOriginal.toLocaleString('en-US')}`;
-    if (tier.monthlyPrice === null) return '-';
+    if (tier.monthlyPrice === null || tier.monthlyPrice === undefined) return '-';
     return `$${(tier.monthlyPrice * 12).toLocaleString('en-US')}`;
   };
+
+  const getTierPrice = (tier: { monthlyPrice?: number | null; annualPrice?: number | null }) => {
+    if (billing === 'annual' && typeof tier.annualPrice === 'number') {
+      return tier.annualPrice;
+    }
+    return tier.monthlyPrice ?? null;
+  };
+
+  const hasAnnualPrice = (tier: { annualPrice?: number | null }) =>
+    typeof tier.annualPrice === 'number';
 
   const scrollToCompare = () => {
     const target = document.getElementById('compare-heading');
@@ -334,34 +329,38 @@ export default function PricingPage() {
                   )}
                 </div>
                 <div className="mt-6 flex items-end gap-2">
-                  <p className="text-4xl font-semibold">
-                    {billing === 'annual'
-                      ? formatPrice(tier.annualPrice)
-                      : formatPrice(tier.monthlyPrice)}
-                  </p>
+                  <p className="text-4xl font-semibold">{formatPrice(getTierPrice(tier))}</p>
                   <p className="text-sm text-primary-dark font-semibold">
-                    {tier.monthlyPrice === null ? '' : billing === 'annual' ? '/year' : '/month'}
+                    {getTierPrice(tier) === null
+                      ? ''
+                      : billing === 'annual' && hasAnnualPrice(tier)
+                        ? '/year'
+                        : '/month'}
                   </p>
                 </div>
-                {tier.monthlyPrice !== null ? (
-                  billing === 'annual' ? (
+                {tier.monthlyPrice !== undefined ? (
+                  billing === 'annual' && hasAnnualPrice(tier) ? (
                     <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-dark">
-                      <span>{tier.annualNote}</span>
+                      <span>Save 2 months</span>
                       <span className="opacity-70 line-through">
                         {getMonthlyTotal(tier.monthlyPrice)}
                       </span>
                       <span className="opacity-80">billed annually</span>
                     </div>
+                  ) : billing === 'annual' ? (
+                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary-dark">
+                      Monthly only
+                    </p>
                   ) : null
-                ) : billing === 'annual' ? (
+                ) : billing === 'annual' && hasAnnualPrice(tier) ? (
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-dark">
-                    <span>{tier.annualNote}</span>
+                    <span>Best Value</span>
                     <span className="opacity-70 line-through">{getAnnualOriginal(tier)}</span>
                     <span className="opacity-80">annual access</span>
                   </div>
                 ) : (
                   <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary-dark">
-                    Annual only
+                    Application only
                   </p>
                 )}
                 <p className="mt-3 text-sm bg-black/20 rounded-2xl p-2 text-center tracking-wide">
@@ -393,7 +392,7 @@ export default function PricingPage() {
         </div>
 
         <Motion className="motion-fade-up motion-ease-out" step={1}>
-          <div id="compare" className="mt-40 rounded-3xl border border-primary/60 bg-surface p-8">
+          <div id="compare" className="mt-10 rounded-3xl border border-primary/60 bg-surface p-8">
             <div className="flex flex-col gap-4">
               <h2 id="compare-heading" className="scroll-mt-24 text-2xl font-semibold">
                 Compare what you get
@@ -428,23 +427,32 @@ export default function PricingPage() {
                     ELITE
                   </div>
 
-                  {COMPARISON.map((row) => (
-                    <div
-                      key={row.label}
-                      className="col-span-4 grid grid-cols-4 gap-4 border-t border-border  py-2 items-center"
-                    >
-                      <div className="">{row.label}</div>
-                      <div className="text-center">
-                        {row.pro ? (row.pro === true ? 'Included' : row.pro) : '❌'}
+                  {COMPARISON.map((row) =>
+                    row.type === 'section' ? (
+                      <div
+                        key={row.label}
+                        className="col-span-1 mt-4 rounded-2xl border border-border bg-black/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-text-muted"
+                      >
+                        {row.label}
                       </div>
-                      <div className="text-center">
-                        {row.premium ? (row.premium === true ? 'Included' : row.premium) : '❌'}
+                    ) : (
+                      <div
+                        key={row.label}
+                        className="col-span-4 grid grid-cols-4 gap-4 border-t border-border py-2 items-center capitalize"
+                      >
+                        <div>{row.label}</div>
+                        <div className="text-center">
+                          {row.pro ? (row.pro === true ? 'Included' : row.pro) : '❌'}
+                        </div>
+                        <div className="text-center">
+                          {row.premium ? (row.premium === true ? 'Included' : row.premium) : '❌'}
+                        </div>
+                        <div className="text-center">
+                          {row.elite ? (row.elite === true ? 'Included' : row.elite) : '❌'}
+                        </div>
                       </div>
-                      <div className="text-center">
-                        {row.elite ? (row.elite === true ? 'Included' : row.elite) : '❌'}
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
               </div>
             </div>

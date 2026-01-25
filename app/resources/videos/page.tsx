@@ -50,7 +50,7 @@ const VIDEO_LIBRARY = [
     title: 'Learn Markets: Price Action',
     summary: 'Core market structure lessons tied to the IYMP playbook.',
     access: 'starter',
-    tag: 'Starter+',
+    tag: 'Pro',
     duration: '14 min',
     type: 'Education',
   },
@@ -58,7 +58,7 @@ const VIDEO_LIBRARY = [
     title: 'Live Plan Review',
     summary: 'Weekly recap and what to watch for next session.',
     access: 'starter',
-    tag: 'Starter+',
+    tag: 'Pro',
     duration: '22 min',
     type: 'Education',
   },
@@ -75,7 +75,7 @@ const VIDEO_LIBRARY = [
 const ACCESS_FILTERS = [
   { id: 'all', label: 'All Videos' },
   { id: 'free', label: 'Free' },
-  { id: 'starter', label: 'Starter+' },
+  { id: 'starter', label: 'Pro' },
   { id: 'premium', label: 'Premium' },
 ];
 
@@ -162,7 +162,7 @@ export default function VideosPage() {
                     <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
                     <div>
                       <p className="font-semibold text-text-primary">Premium strategy sessions</p>
-                      <p>Locked videos require Starter+ or Premium access.</p>
+                      <p>Locked videos require Pro or Premium access.</p>
                     </div>
                   </div>
                   <div className="flex gap-3">
